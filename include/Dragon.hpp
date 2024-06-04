@@ -1,33 +1,62 @@
 #pragma once
-#include <vector>
-#include <Imagen.hpp>
 
 using namespace std;
 
 class Dragon
 {
 private:
-    int nivel_actual;
-    vector<Imagen> niveles;
+    Imagen dragon;
+    int nivel_actual,nivel;
+    float x,y;
+    float seguirx,seguiry;
+    void actualizarNivel(){
+        if (nivel>5 || nivel<1){
+            nivel=1;
+        }
+        this->nivel_actual = 22+2*nivel;
+    }
 public:
-    Dragon() {
-        niveles.push_back(Imagen(23, 67));
-        niveles.push_back(Imagen(23, 69));
-        niveles.push_back(Imagen(23, 71));
-        niveles.push_back(Imagen(23, 73));
-        niveles.push_back(Imagen(23, 75));
-        niveles.push_back(Imagen(23, 67));
-        niveles.push_back(Imagen(23, 69));
-        niveles.push_back(Imagen(23, 71));
-        niveles.push_back(Imagen(23, 73));
-        niveles.push_back(Imagen(23, 75));
-        nivel_actual = 0;
+    int baseY=68;
+    Dragon(int nivel,sf::Vector2f posicion) {
+        this->nivel = nivel;
+        actualizarNivel();
+        dragon.cambiarImagen(getNivelActual(),baseY);
+        dragon.mover(posicion.x, posicion.y);
     }
+
+    int getNivelActual(){
+        return nivel_actual;
+    }
+    void incrementarNivel(){
+        nivel++;
+        actualizarNivel();
+    }
+    void decrementarNivel(){
+        nivel--;
+        actualizarNivel();
+    }  
+    void seguir(float seguirx, float seguiry){
+        if (seguirx<this->x){
+            dragon.mover(-1,0);
+            x=x-1;
+        }
+        if (seguirx>this->x){
+            dragon.mover(1,0);
+            x=x+1; 
+        }
+        if (seguiry<this->y){
+            dragon.mover(0,-1);
+            y=y-1; 
+        }
+        if (seguiry>this->y){
+            dragon.mover(0,1);
+            y=y+1;
+        }
+    }
+    void draw(sf::RenderWindow &window)
+    {
+        window.draw(dragon.getSprite());
+    }
+   
     ~Dragon() {}
-    Imagen& getNivelActual(){
-        return niveles[nivel_actual];
-    }
-    void incrementarNivel() {
-        nivel_actual++;
-    }
 };
