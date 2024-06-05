@@ -1,7 +1,8 @@
+#include <Escenario.hpp>
 #include <iostream>
-#include <random>
 
-int main() {
+
+/*int main() {
     const int filas = 25;
     const int columnas = 25;
 
@@ -41,5 +42,13 @@ int main() {
         std::cout << std::endl;
     }
 
+    return 0;
+}
+*/
+
+int main(int argc, char const *argv[])
+{
+    sf::RenderWindow window(sf::VideoMode(600, 400), "Mapa");
+    Escenario escenario;
     return 0;
 }

@@ -17,6 +17,12 @@ private:
     }
 public:
     int baseY=68;
+     Dragon(int nivel) {
+        this->nivel = nivel;
+        actualizarNivel();
+        dragon.cambiarImagen(getNivelActual(),baseY);
+    }
+    
     Dragon(int nivel,sf::Vector2f posicion) {
         this->nivel = nivel;
         actualizarNivel();
