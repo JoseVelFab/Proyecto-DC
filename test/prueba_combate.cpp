@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <Personaje.hpp>
 #include <Dragon.hpp>
-#include <Ataque.hpp>
+
 
 int main()
 {

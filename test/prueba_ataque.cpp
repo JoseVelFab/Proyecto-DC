@@ -54,7 +54,6 @@ int main()
 
         dragon.seguir(personaje.getPosX(), personaje.getPosY());
         ataque.trayecto();
-
         window.clear();
         personaje.draw(window);
         dragon.draw(window);
