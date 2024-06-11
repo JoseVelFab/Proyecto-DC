@@ -33,11 +33,11 @@ private:
 
 public:
     int baseY=68;
-    Dragon(int nivel){
+     Dragon(int nivel) {
         this->nivel = nivel;
         actualizarNivel();
+        
     }
-
     Dragon(int nivel,sf::Vector2f posicion) {
         this->x = posicion.x;
         this->y = posicion.y;
