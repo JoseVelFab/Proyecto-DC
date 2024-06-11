@@ -10,7 +10,7 @@ int main()
 
     Personaje personaje(sf::Vector2f(0, 0), sf::Color::Red);
     Dragon dragon(3,sf::Vector2f(20, 20));
-
+    Ataque ataque;
 
     while (window.isOpen())
     {
@@ -37,16 +37,29 @@ int main()
             {
                 personaje.move(0, personaje.velocidad * 1);
             }
-           
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                    {
+                        ataque.fijar(
+                            personaje.getPosX(), 
+                            personaje.getPosY(), 
+                            event.mouseButton.x, 
+                            event.mouseButton.y);
+                    
+                        
+                    }
+            }
         }
 
         dragon.seguir(personaje.getPosX(), personaje.getPosY());
-      
+        ataque.trayecto();
 
         window.clear();
         personaje.draw(window);
         dragon.draw(window);
-     
+        ataque.draw(window);
+
         window.display();
     }
 

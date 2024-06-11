@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <windows.h> // Incluir la biblioteca windows.h
 
 int main() {
     const int filas = 25;
@@ -33,6 +34,10 @@ int main() {
         }
     }
 
+    // Cambiar el color de la salida de la consola a rojo
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+
     // Imprimir la matriz
     for (int i = 0; i < filas; ++i) {
         for (int j = 0; j < columnas; ++j) {
@@ -40,6 +45,9 @@ int main() {
         }
         std::cout << std::endl;
     }
+
+    // Restaurar el color de la salida de la consola
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
     return 0;
 }

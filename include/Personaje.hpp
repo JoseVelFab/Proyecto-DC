@@ -1,6 +1,5 @@
 #pragma once
 #include <Imagen.hpp>
-#include <SFML/Graphics.hpp>
 
 class Personaje
 {
