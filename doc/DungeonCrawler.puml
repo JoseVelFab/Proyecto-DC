@@ -1,0 +1,53 @@
+@startuml dungeon_crawler
+
+class Juego {
+    -mapaActual
+    -jugador
+    -puntuacion
+    +iniciarJuego()
+    +actualizarNivel()
+    +incrementarPuntuacion()
+    +mostrarPantallaFinal()
+}
+
+class Jugador {
+    -nombre
+    -vida
+    -dañoBase
+    -posicion
+    +mover()
+    +atacar()
+    +morir()
+}
+
+
+class Mapa {
+    -posicion
+    +inicializar()
+    +mostrar()
+    +generarEnemigos()
+}
+
+class Dragon {
+    -vida
+    -dañoBase
+    -posicion
+    +mover()
+    +atacar()
+    +morir()
+}
+
+class Ataque{
+    +calculoDeDaño()
+}
+
+Juego "1" *-- "*" Mapa
+Juego "1" *-- "1" Jugador
+
+Mapa "1" *-- "*" Dragon
+
+Jugador "1" *-- "1" Ataque
+
+Dragon "1" *-- "1" Ataque
+
+@enduml
