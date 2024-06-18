@@ -1,53 +1,154 @@
 @startuml dungeon_crawler
 
 class Juego {
-    -mapaActual
-    -jugador
-    -puntuacion
-    +iniciarJuego()
-    +actualizarNivel()
-    +incrementarPuntuacion()
-    +mostrarPantallaFinal()
+    -dimencionesVentana
+    +window
+}
+
+class AdministradorDragon {
+    -Listadragones
+    +Actualizacion()
+    +NumeroAleatorio()
+    +NuevoDragon()
+    +draw()
+    +GenerarDragones()
+    +GetCoordenadas()
+    +EliminarDragon()
+    +ExistenDragones()
 }
 
 class Jugador {
-    -nombre
-    -vida
-    -dañoBase
-    -posicion
-    +mover()
-    +atacar()
-    +morir()
+    -prota 
+    -barraVida 
+    -reloj 
+    -offsetX 
+    -offsetY 
+    -velocidad 
+    -teletransporteHabilitado 
+    -dimencionesVentana 
+    -CantidadVida 
+    +ActualizarVida() 
+    +RecibirDaño() 
+    +draw()
+    +GetPosicion() 
+    +MoverAlPersonaje() 
+    +TeletransportarOrigen() 
+    +Correr() 
+    +Teletransporte() 
+    +VerificarEstado() 
+    +GetVida()
 }
 
 
-class Mapa {
-    -posicion
-    +inicializar()
-    +mostrar()
-    +generarEnemigos()
+class AdministradorMapa {
+    -sprite 
+    -texturaC 
+    -texturaD 
+    -texturaI 
+    -texturaM 
+    -texturaMo 
+    -check() 
+    -MapaAlelatorio() 
+    +getSprite() 
+    +draw() 
+    +Elegirmapa() 
 }
 
 class Dragon {
-    -vida
-    -dañoBase
-    -posicion
-    +mover()
-    +atacar()
-    +morir()
+    -dragon 
+    -posicionDeComparacion
+    -clock
+    -vida 
+    -nivel_actual 
+    -nivel_actualD
+    -nivel 
+    -velocidad 
+    -ActualizarNivel()
+    -Print()
+    +baseY 
+    +GetNivelActual()
+    +GetPosicion() 
+    +IncrementarNivel() 
+    +DecrementarNivel() 
+    +Seguir() 
+    +draw() 
+    +Vive() 
 }
 
-class Ataque{
-    +calculoDeDaño()
+class AdminAtaque {
+    -ListaAtaques
+    +EliminarTodo()
+    +NuevoAtaque()
+    +Actualizacion()
+    +CheckHit()
+    +draw() 
+}
+class Ataque {
+    -ataque
+    -destino
+    -cambio
+    -posicion0
+    -f
+    -duracion
+    -tiempoTranscurrido
+    -rangoDeAtaque
+    -pendiente
+    -DireccionCheck()
+    -ActualizarLocalizacion()
+    +baseY
+    +CalculoVariables()
+    +trayecto()
+    +ProyectarImagen()
+    +draw()
+    +EstaVivo()
+    +Comparar()
+}
+class Contador {
+    -cloc
+    +GetTiempo()
+    +Esperar()
+    +ResetearReloj()
 }
 
-Juego "1" *-- "*" Mapa
-Juego "1" *-- "1" Jugador
+class Imagen {
+    -sprite 
+    -textureC 
+    -coord_x 
+    -coord_y 
+    -ancho 
+    -alto 
+    -x 
+    -y 
+    -check() 
+    +coordenadas 
+    +ObtenerVectorCoordenadas() 
+    +getSprite() 
+    +cambiarImagen() 
+    +posicion() 
+    +mover() 
+}
 
-Mapa "1" *-- "*" Dragon
+class AdministradorNivel {
+    -NumeroNivel 
+    +GetNivelActual()
+    +SiguienteNivel() 
+}
 
-Jugador "1" *-- "1" Ataque
+Juego "1" o-- "1" Jugador 
+Juego "1" o-- "1" AdministradorDragon 
+Juego "1" o-- "1" AdminAtaque 
+Juego "1" o-- "3" Contador 
+Juego "1" o-- "1" AdministradorNivel 
+Juego "1" o-- "1" AdministradorMapa 
 
-Dragon "1" *-- "1" Ataque
+AdminAtaque "1" *-- "*" Ataque
+
+Jugador "1" o-- "*" Ataque
+
+AdministradorDragon "1" *-- "*" Dragon
+
+Dragon "1" *-- "1" Imagen
+Jugador "1" *-- "1" Imagen
+Ataque "1" *-- "1" Imagen
 
 @enduml

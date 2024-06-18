@@ -17,7 +17,7 @@ int main()
     AdministradorDragon dragones;
     AdminAtaque ataques;
     Contador DescansoDaño, DescansoAtaque, DescansoDañoRecibido;
-    Nivel nivel;
+    AdministradorNivel nivel;
     Mapa mapa;
 
     while (window.isOpen())
@@ -83,8 +83,6 @@ int main()
                     }
                 }
             }
-            // cout << "Vida: " << personaje.GetVida() << endl;
-
             window.clear();
             mapa.draw(window);
             personaje.draw(window);
@@ -96,11 +94,6 @@ int main()
         ataques.EliminarTodo();
         nivel.SiguienteNivel();
         personaje.TeletransportarOrigen();
-        if (personaje.GetVida() <= 0)
-        {
-            cout << "Perdiste" << endl;
-            break;
-        }
     }
     return 0;
 }

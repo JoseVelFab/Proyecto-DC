@@ -1,10 +1,10 @@
 #pragma once
-class Nivel
+class AdminisradorNivel
 {
 private:
     int NumeroNivel;
 public:
-    Nivel() {
+    AdministradorNivel() {
         NumeroNivel = 1;
         
     }
@@ -14,5 +14,5 @@ public:
     int SiguienteNivel() {
         return NumeroNivel++;
     }
-    ~Nivel() {}
+    ~AdministradorNivel() {}
 };

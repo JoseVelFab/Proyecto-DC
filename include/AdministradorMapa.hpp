@@ -3,7 +3,7 @@
 #include <random>
 using namespace std;
 
-class Mapa
+class  AdministradorMapa
 {
 private:
     sf::Sprite sprite;
@@ -42,7 +42,7 @@ private:
     }
 
 public:
-    Mapa()
+    AdministradorMapa()
     {
         check();
     }
@@ -80,5 +80,5 @@ public:
         }
     }
 
-    ~Mapa() {}
+    ~AdministradorMapa() {}
 };
