@@ -1,5 +1,7 @@
 #pragma once
 #include <Imagen.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 
 using namespace std;
 
@@ -7,58 +9,87 @@ class Ataque
 {
 private:
     Imagen ataque;
-    int nivel_actual, nivel;
-    float x, y, fx, fy;
-    int f = 1;
-    int tiempoTrasncurrido = 0;
-    int duracion = 100;
+    sf::Vector2f destino,cambio,posicion0;
+    int f=1;
+    int duracion = 500,tiempoTranscurrido;
+    float rangoDeAtaque = 32;
+    float pendiente;
+
+    bool DireccionCheck()
+    {
+        sf::Vector2f diferencial;
+        diferencial.x = abs(destino.x - posicion0.x);
+        diferencial.y = abs(destino.y - posicion0.y);
+        if (diferencial.y > diferencial.x)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    void ActualizarLocalizacion()
+    {
+        if (DireccionCheck() == true)
+        {
+            ataque.mover(cambio.x, cambio.x * pendiente);
+        }
+        else
+        {
+            ataque.mover(cambio.y * pendiente, cambio.y);
+        }
+    }
 
 public:
     int baseY = 69;
 
-    Ataque()
+    Ataque(sf::Vector2f posicionInicio,float destinox, float destinoy)
     {
-        ProyectarImagen();
+        this->posicion0 = posicionInicio;
+        this->destino.x = destinox;
+        this->destino.y = destinoy;
+        ataque.mover(posicionInicio.x, posicionInicio.y);
+        CalculoVariables();
     }
-
-    Ataque(float x, float y, float fx, float fy)
-    {
-        this->x = x;
-        this->y = y;
-        this->fx = fx;
-        this->fy = fy;
-
-        ataque.mover(x, y);
+    
+    void CalculoVariables(){
+        this->pendiente = (destino.y - posicion0.y) / (destino.x - posicion0.x);
+        if (DireccionCheck() == true)
+        {
+            if (destino.x - posicion0.x > 0)
+            {
+                this->cambio.x = 1;
+            }
+            else
+            {
+                this->cambio.x = -1;
+            } 
+        }
+        else
+        {
+            pendiente = 1 / pendiente;
+            if (destino.y - posicion0.y > 0)
+            {
+                this->cambio.y = 1;
+            }
+            else
+            {
+                this->cambio.y = -1;
+            }
+        }
     }
 
     void trayecto()
     {
-        this->f++;
-        if (fx - x < 0)
-        {
-            ataque.mover(-1, 0);
-            this->x--;
-        }
-        if (fx - x > 0)
-        {
-            ataque.mover(1, 0);
-            this->x++;
-        }
-        if (fy - y < 0)
-        {
-            ataque.mover(0, -1);
-            this->y--;
-        }
-        if (fy - this->y > 0)
-        {
-            ataque.mover(0, 1);
-            this->y++;
-        }
-        if (f > 4)
+        f++;
+        if (f > 3)
         {
             this->f = 1;
         }
+    
         ProyectarImagen();
+        ActualizarLocalizacion();
     }
 
     void ProyectarImagen()
@@ -71,17 +102,38 @@ public:
         window.draw(ataque.getSprite());
     }
 
-    bool EstaVivo(){
-        if (this->tiempoTrasncurrido < this->duracion)
-        {
-            this->tiempoTrasncurrido += 1;
+    bool EstaVivo()
+    {
+        tiempoTranscurrido += 1;
+        if (tiempoTranscurrido < duracion)
+        {   
+            if (tiempoTranscurrido > (duracion-50))
+            {
+                int imagenEnX = 10 + ((duracion - tiempoTranscurrido)/10);
+                ataque.cambiarImagen(imagenEnX, 27);
+            }
             return true;
-        }else
+        }
+        else
         {
             return false;
         }
-        
-        
+    }
+
+    bool Comparar(sf::Vector2f enemigo)
+    {
+        if (
+            (enemigo.x-10) <= ataque.coordenadas.x &&
+            (enemigo.y-10) <= ataque.coordenadas.y &&
+            (enemigo.x + 32) >= ataque.coordenadas.x &&
+            (enemigo.y + 32) >= ataque.coordenadas.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     ~Ataque() {}

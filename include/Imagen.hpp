@@ -11,6 +11,7 @@ private:
     const int ancho = 32;
     const int alto = 32;
     float x,y;
+
     void check(){
         if (!textureC.loadFromFile("./assets/images/ProjectUtumno_full.png"))
         {
@@ -19,6 +20,10 @@ private:
         }
     }
 public:
+    sf::Vector2f coordenadas;
+    sf::Vector2f ObtenerVectorCoordenadas(){
+        return this->coordenadas;
+    }
     Imagen() {
         check();
     }
@@ -48,11 +53,19 @@ public:
             )
         );
     }
-    void posicion(sf::Vector2f positioI){
-        this->sprite.setPosition(positioI);
+
+    void posicion(sf::Vector2f posicionI)
+    {
+        this->sprite.setPosition(posicionI);
+        this->coordenadas.x= posicionI.x;
+        this->coordenadas.y=posicionI.y;
+
     }
+
     void mover(float x, float y){
         this->sprite.move(x,y);
+        this->coordenadas.x += x;
+        this->coordenadas.y += y;
     }
     ~Imagen() {}
 };

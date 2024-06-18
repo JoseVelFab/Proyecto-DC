@@ -8,7 +8,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game");
 
-    Personaje personaje(sf::Vector2f(0, 0), sf::Color::Red);
+    Personaje personaje(sf::Vector2f(0, 0));
     Dragon dragon(3,sf::Vector2f(20, 20));
 
 
@@ -23,24 +23,24 @@ int main()
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             {
-                personaje.move(personaje.velocidad * -1, 0);
+                personaje.mover(-1, 0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
-                personaje.move(personaje.velocidad * 1, 0);
+                personaje.mover( 1, 0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             {
-                personaje.move(0, personaje.velocidad * -1);
+                personaje.mover(0, -1);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             {
-                personaje.move(0, personaje.velocidad * 1);
+                personaje.mover(0, 1);
             }
            
         }
 
-        dragon.seguir(personaje.getPosX(), personaje.getPosY());
+        dragon.Seguir(personaje.GetPosicion());
       
 
         window.clear();

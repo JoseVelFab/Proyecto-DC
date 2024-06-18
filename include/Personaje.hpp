@@ -4,38 +4,74 @@
 class Personaje
 {
 private:
-    sf::RectangleShape shape; 
-    Imagen prota; 
-    int ancho = 32;
-    int alto = 32;
+    Imagen prota,vida;
     float offsetX, offsetY;
+    double velocidad = 5;
+    sf::Vector2f dimencionesVentana;
 public:
-    double velocidad = 10;
-    Personaje(sf::Vector2f posicion, sf::Color color) {
-        this->prota.cambiarImagen(1, 61);
-        shape.setSize(sf::Vector2f(ancho, alto));
-        shape.setPosition(posicion); // Posición inicial cuadro
-        prota.mover(posicion.x, posicion.y);
-        shape.setFillColor(color);
-    }
-    void move(float offsetX, float offsetY)
+    Personaje(sf::Vector2f posicion)
     {
-        shape.move(offsetX, offsetY);
-        prota.mover(offsetX, offsetY);
-    }
-
-    float getPosX(){
-        return shape.getPosition().x;
-    }
-
-    float getPosY(){
-        return shape.getPosition().y;
+        dimencionesVentana = posicion;
+        this->prota.cambiarImagen(1, 61);
+        this->vida.cambiarImagen(61, 50);
+        vida.mover(posicion.x/2, posicion.y/2+10);
+        prota.mover(posicion.x/2, posicion.y/2);
     }
 
     void draw(sf::RenderWindow &window)
     {
-        window.draw(this->shape);
         window.draw(prota.getSprite());
+        window.draw(vida.getSprite());
+    }
+
+    sf::Vector2f GetPosicion()
+    {
+        return prota.coordenadas;
+    }
+
+    void MoverAlPersonaje(float offsetX, float offsetY)
+    {
+        offsetX = offsetX * velocidad;
+        offsetY = offsetY * velocidad;
+        prota.mover(offsetX, offsetY);
+        SeguirPersonaje();
+    }
+    void SeguirPersonaje()
+    {
+        vida.mover(prota.coordenadas.x, prota.coordenadas.y+10);
+    }
+
+    void Correr()
+    {
+        cout << "Corriendo" << endl;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            if (GetPosicion().x > 0)
+            {
+                MoverAlPersonaje(-1, 0);
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            if (GetPosicion().x < dimencionesVentana.x - 32)
+            {
+                MoverAlPersonaje(1, 0);
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            if (GetPosicion().y > 0)
+            {
+                MoverAlPersonaje(0, -1);
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            if (GetPosicion().y < dimencionesVentana.y - 52)
+            {
+                MoverAlPersonaje(0, 1);
+            }
+        }
     }
     ~Personaje() {}
 };

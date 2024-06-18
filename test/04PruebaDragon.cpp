@@ -11,8 +11,8 @@ int main(int argc, char const *argv[])
     sf::RenderWindow window(sf::VideoMode(600, 400), "DinoChrome");
     // Escenario escenario;
     Dragon dragon(1);
-    std::cout << "Nivel Actual: " << dragon.getNivelActual() << std::endl;
-    Imagen enemigo(dragon.getNivelActual(),dragon.baseY);
+    std::cout << "Nivel Actual: " << dragon.GetNivelActual() << std::endl;
+    Imagen enemigo(dragon.GetNivelActual(),dragon.baseY);
     
 
     while (window.isOpen())
@@ -31,13 +31,13 @@ int main(int argc, char const *argv[])
                 cout << "Tecla presionada: " << event.key.code << endl;
                 if (event.key.code == sf::Keyboard::Up)
                 {
-                    dragon.incrementarNivel();
-                    std::cout << "Nivel Actual: " << dragon.getNivelActual() << std::endl;
+                    dragon.IncrementarNivel();
+                    std::cout << "Nivel Actual: " << dragon.GetNivelActual() << std::endl;
                 }
                 if (event.key.code == sf::Keyboard::Down)
                 {
-                    dragon.decrementarNivel();
-                    std::cout << "Nivel Actual: " << dragon.getNivelActual() << std::endl;
+                    dragon.DecrementarNivel();
+                    std::cout << "Nivel Actual: " << dragon.GetNivelActual() << std::endl;
                 }
             }
         }
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
         
         
         // Dibujar
-        enemigo.cambiarImagen(dragon.getNivelActual(),dragon.baseY);
+        enemigo.cambiarImagen(dragon.GetNivelActual(),dragon.baseY);
         
         window.clear();
         window.draw(enemigo.getSprite());

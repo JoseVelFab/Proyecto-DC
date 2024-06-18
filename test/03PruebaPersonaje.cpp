@@ -3,7 +3,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Test Personaje");
-    Personaje mc(sf::Vector2f(0,0),sf::Color::Red);
+    Personaje mc(sf::Vector2f(0,0) );
 
     while (window.isOpen())
     {
@@ -15,19 +15,19 @@ int main()
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            mc.move(mc.velocidad*-1, 0);
+            mc.mover(1, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            mc.move(mc.velocidad*1, 0);
+            mc.mover(-1, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            mc.move(0, mc.velocidad*-1);
+            mc.mover(0, 1);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            mc.move(0, mc.velocidad*1);
+            mc.mover(0, -1);
         }
         }
 
