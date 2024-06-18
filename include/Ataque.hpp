@@ -46,6 +46,7 @@ public:
 
     Ataque(sf::Vector2f posicionInicio,float destinox, float destinoy)
     {
+        //cout << "Ataque creado" << endl;
         this->posicion0 = posicionInicio;
         this->destino.x = destinox;
         this->destino.y = destinoy;
@@ -99,6 +100,7 @@ public:
 
     void draw(sf::RenderWindow &window)
     {
+        //cout << "Ataque dibujado" << endl;
         window.draw(ataque.getSprite());
     }
 

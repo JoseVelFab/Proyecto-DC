@@ -1,12 +1,14 @@
+#pragma once
 #include <SFML/System/Clock.hpp>
 
-class Reloj
+/// @brief 
+class Contador
 {
 private:
     sf::Clock clock;
 
 public:
-    Reloj()
+    Contador()
     {
         clock.restart();
     }
@@ -34,5 +36,5 @@ public:
         clock.restart();
     }
 
-    ~Reloj() {}
+    ~Contador() {}
 };

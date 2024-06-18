@@ -21,22 +21,7 @@ int main()
             if (event.type == sf::Event::Closed)
             {
                 window.close();
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            {
-                personaje.mover(-1, 0);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            {
-                personaje.mover(1, 0);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            {
-                personaje.mover(0, -1);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
-                personaje.mover(0,1);
+                break;
             }
             if (event.type == sf::Event::MouseButtonPressed)
             {
@@ -45,9 +30,12 @@ int main()
                                         event.mouseButton.x,
                                         event.mouseButton.y);
                 }
+                if (event.mouseButton.button == sf::Mouse::Right){
+                    personaje.Teletransporte();
+                }
             }
         }
-
+        personaje.Correr();
         dragon.Seguir(personaje.GetPosicion());
         ataques.Actualizacion();
         

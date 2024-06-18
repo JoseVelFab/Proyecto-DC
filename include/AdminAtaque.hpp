@@ -14,7 +14,10 @@ public:
     AdminAtaque()
     {
     }
-
+    void EliminarTodo()
+    {
+        ataques.clear();
+    }
     void NuevoAtaque(sf::Vector2f posicionPersonaje, float mouseX, float mouseY)
     {
         ataques.emplace_back(Ataque(
