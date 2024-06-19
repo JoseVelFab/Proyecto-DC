@@ -47,11 +47,8 @@ public:
     }
     void RecibirDaño()
     {
-        if (reloj.Esperar(1))
-        {
             CantidadVida--;
             ActualizarVida();
-        }
     }
     void draw(sf::RenderWindow &window)
     {
@@ -119,7 +116,7 @@ public:
         if (reloj.Esperar(2))
         {
             this->teletransporteHabilitado = true;
-            this->velocidad = 50;
+            this->velocidad = 150;
             Correr();
         }
     }

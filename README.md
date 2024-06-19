@@ -1,4 +1,6 @@
 # Dungeon Crawler
+![Maguito](/assets/images/MagoChistoso.png)
+
 # Descripcion 
 "Un "dungeon crawl" es un tipo de escenario en juegos de rol de fantasía 
 en el que los héroes exploran un entorno de laberinto (un "calabozo"), 
@@ -9,6 +11,9 @@ En este proyecto se piensa adoptar esta idea para hacer un videojuego de vista s
 # Objetivo 
 Realizar una demo jugable con la tematica de un Dungeon Crawler donde se pueda atacar a los enemigos y a la vez estos te ataquen para poder matarte
 
+![DemostracionDelJuego](/assets/images/Demo1.png)
+
+![DemostracionDelJuego](/assets/images/Demo2.png)
 # Carpetas 
 - bin/ - Contiene los ejecutables del proyecto 
 - src/ - Contiene el codigo fuente 
@@ -21,6 +26,8 @@ Realizar una demo jugable con la tematica de un Dungeon Crawler donde se pueda a
 - Gestiona una lista de ataques en un juego. 
 - La clase permite agregar nuevos ataques (NuevoAtaque), actualizar el estado de los ataques eliminando los inactivos (Actualizacion), verificar si algún ataque ha alcanzado una posición específica (CheckHit), y dibujar los ataques en una ventana (draw). 
 - Además, incluye un método para eliminar todos los ataques (EliminarTodo).
+
+![DemostracionDelJuego](/assets/images/Demo3.png)
 
 ## AdministradorDragon
 - Define una clase AdministradorDragon que maneja una lista de dragones en un juego. 
@@ -63,10 +70,14 @@ Realizar una demo jugable con la tematica de un Dungeon Crawler donde se pueda a
 - Inicializa el personaje con una posición y color, y ajusta el sprite de Imagen a la misma posición. Proporciona métodos para mover el personaje, obtener su posición actual y dibujarlo en una ventana. 
 - La velocidad de movimiento es configurable y la imagen del personaje se establece inicialmente a una porción específica de la textura.
 
-# Funcionamiento 
-- Instalar msys2 
+# Tutorial 
+- Instalar msys2
+Se recomienda este Tutorial: https://code.visualstudio.com/docs/cpp/config-mingw 
 - Copiar este repositorio de github en visual studio code 
 - Escribir en la terminal make runjuego
+- Disfrutar 
+
+![DemostracionDelJuego](/assets/images/Demo4.png)
 
 # Agradecimiento 
 - Todos los assets usados fueron traidos por: https://opengameart.org/content/dungeon-crawl-32x32-tiles-supplemental gracias a estos el proyecto pudo hacerse 

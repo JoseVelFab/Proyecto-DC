@@ -1,5 +1,5 @@
 #pragma once
-class AdminisradorNivel
+class AdministradorNivel
 {
 private:
     int NumeroNivel;

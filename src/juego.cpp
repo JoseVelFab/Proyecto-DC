@@ -4,8 +4,8 @@
 #include <AdministradorDragon.hpp>
 #include <AdminAtaque.hpp>
 #include <Contador.hpp>
-#include <Nivel.hpp>
-#include <Mapa.hpp>
+#include <AdministradorNivel.hpp>
+#include <AdministradorMapa.hpp>
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main()
     AdminAtaque ataques;
     Contador DescansoDaño, DescansoAtaque, DescansoDañoRecibido;
     AdministradorNivel nivel;
-    Mapa mapa;
+    AdministradorMapa mapa;
 
     while (window.isOpen())
     {

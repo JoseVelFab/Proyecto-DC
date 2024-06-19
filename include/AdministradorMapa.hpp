@@ -41,6 +41,14 @@ private:
         return distrib(gen);
     }
 
+    int Numero(int Min,int Max)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distrib(Min, Max);
+        return distrib(gen);
+    }
+
 public:
     AdministradorMapa()
     {
@@ -78,6 +86,14 @@ public:
         default:
             break;
         }
+        sprite.setTextureRect(
+            sf::IntRect(
+                Numero(0,1120),
+                Numero(0,1320),
+                800,
+                600
+            )
+        );
     }
 
     ~AdministradorMapa() {}
