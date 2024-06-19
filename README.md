@@ -2,7 +2,7 @@
 ![Maguito](/assets/images/MagoChistoso.png)
 
 # Demostracion
-[![DungeonCrawler](https://youtu.be/dfbdorua7-o.jpg)](https://youtu.be/dfbdorua7-o)
+![DungeonCrawler_Video](https://youtu.be/dfbdorua7-o)
 
 # Descripcion 
 "Un "dungeon crawl" es un tipo de escenario en juegos de rol de fantasía 
