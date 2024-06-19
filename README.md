@@ -72,8 +72,8 @@ Realizar una demo jugable con la tematica de un Dungeon Crawler donde se pueda a
 
 # Tutorial 
 - Instalar msys2
-Se recomienda este Tutorial: https://code.visualstudio.com/docs/cpp/config-mingw 
--Descargar la libreria SFML en la consola de msys correspondiente
+Se recomienda este Tutorial: https://code.visualstudio.com/docs/cpp/config-mingw.
+- Descargar la libreria SFML en la consola de msys correspondiente
 - Copiar este repositorio de github en visual studio code 
 - Escribir en la terminal make runjuego
 - Disfrutar 
